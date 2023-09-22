@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>RoboMaster视觉学习建议 | 代码学习永远在路上</title><meta name="author" content="peter"><meta name="copyright" content="peter"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="视觉学习建议 目录  程序语言 操作系统 管理工具 OpenCV 数学基础 神经网络 推荐网站   程序语言 C++ ​	C++编写起来和C语言一样结构清晰，又在C语言的基础上增加了许多新的功能，还可以直接操作硬件，绝对是研发机器视觉最好的语言。 ​	面向对象，封装、多态、继承这些思想绝对是编程的重"><link rel="shortcut icon" href="https://img.peterli.club/img/profile.png"><link rel="canonical" href="https://peterli.club/2020/RoboMaster%E8%A7%86%E8%A7%89%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-c9hz390Wld"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e50dee5804918429b74a301c425729fe";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RoboMaster视觉学习建议',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-22 15:58:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img.peterli.club/img/profile.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/ML/"><i class="fa-fw fa-solid fa-robot"></i><span> 机器学习</span></a></li><li><a class="site-page child" href="/docker/"><i class="fa-fw fa-brands fa-docker"></i><span> Docker</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fspider.ws.126.net%2Fbfd6e944b6d55a7aa79999f655bba5db.jpeg&amp;refer=http%3A%2F%2Fspider.ws.126.net&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1653714050&amp;t=a398f75de61a279970c545962791c3e4')"><nav id="nav"><span id="blog-info"><a href="/" title="代码学习永远在路上"><span class="site-name">代码学习永远在路上</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/ML/"><i class="fa-fw fa-solid fa-robot"></i><span> 机器学习</span></a></li><li><a class="site-page child" href="/docker/"><i class="fa-fw fa-brands fa-docker"></i><span> Docker</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RoboMaster视觉学习建议</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-18T10:57:34.000Z" title="发表于 2020-07-18 18:57:34">2020-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-22T07:58:28.829Z" title="更新于 2023-09-22 15:58:28">2023-09-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/RoboMaster/">RoboMaster</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RoboMaster视觉学习建议"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>视觉学习建议</h1>
+<h2 id="目录">目录</h2>
+<ul>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80">程序语言</a></li>
+<li><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Ubuntu">操作系统</a></li>
+<li><a href="#%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Git">管理工具</a></li>
+<li><a href="#OpenCV">OpenCV</a></li>
+<li><a href="#%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80">数学基础</a></li>
+<li><a href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a></li>
+<li><a href="#%E6%8E%A8%E8%8D%90%E7%BD%91%E7%AB%99">推荐网站</a></li>
+</ul>
+<hr>
+<h2 id="程序语言">程序语言</h2>
+<h3 id="C">C++</h3>
+<p>​	C++编写起来和C语言一样结构清晰，又在C语言的基础上增加了许多新的功能，还可以直接操作硬件，绝对是研发机器视觉最好的语言。</p>
+<p>​	面向对象，封装、多态、继承这些思想绝对是编程的重点。小型项目可能感觉不出来，一旦项目代码超过千行，如何解耦和划分功能模块就成了所有人不得不面对的问题，而C++正好提供了面向对象的编程模型，又是静态编译型语言，速度快，是一定要学好的。</p>
+<p>​	一个人写代码乱一点可能不要紧，但是多个人一起写代码就需要一个强有力的代码规范，比如变量的命名、类的命名、宏定义的命名和缩进格式等，这里我推荐大家看一下华为的<a target="_blank" rel="noopener" href="https://www.openarkcompiler.cn/document/rules">方舟编译器代码规范</a>，学习一下别人的代码是如何编写的。</p>
+<h3 id="Python">Python</h3>
+<p>​	Python是我们用来编写深度学习的脚本语言，py的编写方式远比C++简单，开发小型项目的效率比C++高。但是Python是解释型语言，不进行编译，运行时底层有一个Pyhton解释器在动态解释代码，这就造成了Python在开发大型项目时运行速度会变慢，结构不清晰。</p>
+<p>​	我们一般使用Python来训练机器学习模型，清洗机器学习所需要的数据集和部署大型神经网络。雷达站就是使用了YoloV4深度学习框架+DeepSort追踪器，YoloV4是C语言编写的框架，DeepSort是Python编写的，语言不同，但是使用py可以把这两个框架联合起来，共同为我们服务。这就是py的优点。</p>
+<hr>
+<h2 id="操作系统-Ubuntu">操作系统-Ubuntu</h2>
+<p>​	在车上跑的系统肯定不能是Windows，系统太过臃肿，有很多的功能我们并不需要，这时候Ubuntu就出场了，Ubuntu是一个基于Linux的、开源的操作系统。体统非常简洁，但是可以办到的事情却一点也不简单，视觉组的代码都是即可以运行在Windows上又可以运行在Ubuntu上的。平时使用WIndows开发，到了比赛的时候就在Ubuntu上跑代码。</p>
+<p><a target="_blank" rel="noopener" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows#0">windows环境下ubuntu usb系统盘制作教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop">安装Ubuntu系统</a></p>
+<p>一般有虚拟机安装，双系统，移动硬盘安装等方式安装ubuntu，这里不推荐虚拟机安装，因为过程占用内存过大，跑我们的代码会非常卡，这里我们推荐双系统，	ubuntu与windows共存，重启电脑即可切换系统，安装也相对简单。愿意买一块移动硬盘安装ubuntu也是不错的选择，不用占用原电脑硬盘容量，安装过程更加简单粗暴，甚至可以插入别人的电脑打自己的代码，随时随地都能开心地工作，是你在实验室赶进度的最佳选择。</p>
+<p>​	安装完ubuntu后需要各位熟悉linux系统的一些基本命令行操作。比如ctrl+alt+t打开一个终端，cd进入某个目录，sudo获取root权限。rm删除某个文件或文件夹等等，初接触时会觉得繁琐，但熟练运用后你会觉得特别便捷高效。<a target="_blank" rel="noopener" href="https://tutorials.ubuntu.com/tutorial/command-line-for-beginners#0">参考链接</a></p>
+<hr>
+<h2 id="管理工具-Git">管理工具-Git</h2>
+<p>在战队待一整年，你需要和很多人合作，编写大量代码，代码改来改去容易乱套……</p>
+<p>所以你必须学会使用强大的版本管理工具——Git。</p>
+<p>在Git中，你可以看到队友们每次修改的内容，出现问题时，可以退回到任意一次修改之前。</p>
+<p>Git也具有强大的分支合并功能，视觉组平时开发时一个组员开发一个特定的分支，一个分支实现一个特定的功能，在功能开发和测试完毕后，就会合并到主分支。这样主分支的代码永远是可以使用的状态，新的功能的开发都在测试分支上。</p>
+<p>下图为方舟编译器代码的分支合并情况。可以看到优秀的代码工程都是多个模块并行开发，持续集成到主分支。</p>
+<p><img src="https://img.peterli.club/img/image-20200718165733341.png" alt="image-20200718165733341"></p>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/">官方网站（英文）</a></p>
+<p><a target="_blank" rel="noopener" href="https://rogerdudler.github.io/git-guide/index.zh.html">推荐教程（中文）</a></p>
+<p><a target="_blank" rel="noopener" href="https://learngitbranching.js.org/">教学游戏</a></p>
+<hr>
+<h2 id="OpenCV">OpenCV</h2>
+<p>这是视觉组的任务重点，需要花最多的时间学习。</p>
+<p><a target="_blank" rel="noopener" href="https://opencv.org/">官方网站</a></p>
+<p>OpenCV是当前最具影响力的计算机视觉开源库。它的官网资料相当完整，在页面右边，有Online Documentation（在线文档）、Tutorials（教程）、User Q&amp;A forum（问答论坛）都非常棒。</p>
+<p>在Tutorials里就有详细的安装教程，我们建议在你的Windows和Ubuntu上都安装OpenCV，这里要求各位安装opencv3及以上版本。</p>
+<p>OpenCV最推荐的资料还是官网文档。内容详细、更新速度快。大家也要尽快适应阅读英文资料，因为后面有些问题中文几乎查不到。</p>
+<p>不过这里仍然为想要快速熟悉opencv的朋友推荐一本opencv3的书，《OpenCV3编程入门》</p>
+<p>最好的学习方法其实就是多用，我们更推荐遇到问题的时候再去查找相关资料，完成视觉组面试前实战任务是最快速的opencv学习方法。</p>
+<hr>
+<h2 id="数学基础">数学基础</h2>
+<p>我们来谈谈简单有趣的数学基础，如果我直接和你说“线代很重要赶紧学”，可能你就体会不到我们这篇文章简单有趣的核心思想了，所以我打算举几个例子。</p>
+<p>好像有某位厉害的人说过：“矩阵就是映射。”</p>
+<p>比如说从世界坐标系映射到相机坐标系，从相机坐标系映射到像素坐标系。所以其实“从相机坐标系映射到像素坐标系”这句话翻译成人话就是相机内参，“从世界坐标系映射到相机坐标系”这句话翻译过来就是相机外参。就是说相机内参和外参其实都是用矩阵表示的，而且矩阵的应用不止这么一小点，比如特征的描述子，比如矩阵卷积来提取高维的特征等等，所以知道重要还不赶紧去学一波。</p>
+<p>顺便附上<a target="_blank" rel="noopener" href="https://m.bilibili.com/video/av6731067.html">祖传线代链接</a></p>
+<p>而且也不仅仅是线代，概率论也是偶尔用得上的，比如让你描述一个轮廓的特征，你可能想到轮廓矩，这里的矩其实就是概率论里面的矩，把轮廓点集的坐标值当成一组随机变量来看这是很有意思的想法，有了这些概念你拿到api帮你算出来的矩心理也比较有底，知道怎么去用对吧。</p>
+<p>这么多底层的算法仔细想一想就头大，别担心，这当然不用你亲自去写了。OpenCV都已经帮你封装好了，RM视觉需要用到的矩阵运算方法一般OpenCV里都有，还有各种坐标点和相机参数的处理方法。</p>
+<hr>
+<h2 id="神经网络">神经网络</h2>
+<p>神经网络今年主要是用来识别车上的装甲板的，用了SVM训练装甲板模型进行检测。在雷达站上也用到了darknet深度学习框架，直接训练目标检测模型，外加TensorFlow做一些辅助处理。</p>
+<p><img src="https://img.peterli.club/img/image-20200718170342967.png" alt="image-20200718170342967"></p>
+<hr>
+<h2 id="推荐网站">推荐网站</h2>
+<h3 id="stackoverflow"><a target="_blank" rel="noopener" href="https://stackoverflow.com/">stackoverflow</a></h3>
+<p>中文名：栈溢出。程序员交友网站，外国版的CSDN。</p>
+<p>可以解答你在计算机语言学习过程中的绝大多数疑惑。</p>
+<p>当然，提问和回答都是English的，不过程序员的专业英语比较简单，词汇量较少，看懂还是比较容易的。</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20824615/answer/252350555">如何优雅地使用 Stack Overflow？ - 猴子的回答 - 知乎</a></p>
+<h3 id="Github"><a target="_blank" rel="noopener" href="https://github.com">Github</a></h3>
+<p>没有使用过Github的程序员就不是一个真正的程序员，Github是世界上最大的开源库，别人家的优秀代码的集中地。</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20070065/answer/117017972">如何使用 GitHub？ - 杨晓辉的回答 - 知乎</a></p>
+<h3 id="Gitee"><a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a></h3>
+<p>码云，中国的Github，没有Github访问和下载慢的烦恼，还有一系列本土化讨好中国程序员的功能，中国的开源项目一般都会发布在码云上一份。</p>
+<p>平时没事的时候就会逛<a target="_blank" rel="noopener" href="https://gitee.com/explore">码云开源项目精选</a>，Github上开源的都是英语，极少有中文，学习起来比较困难。在码云上热门的开源项目都会写完整的中文文档，帮助我们了解此项目。</p>
+<h2 id="One-more-thing">One more thing</h2>
+<p>为什么有的人代码写的这么烂，很多写死的代码，一点儿灵活性都没有，更没有规范，完全就是堆压。</p>
+<p>为什么有的人根本不知道怎么去抽象，并不清楚怎么样积累成公共组件，为什么他们改一个问题，通常会引出更多的问题？</p>
+<p>为什么他们的代码里的实现方案，让人看完之后恨的牙痒痒，想改又完全不能改，毕竟，正常工作的代码才是好代码？</p>
+<p>很大程度上是因为，很多程序员，不懂的代码的扩展性，不会面向未来编程。</p>
+<p>怎么叫做面向未来编程？</p>
+<p><strong>一个好的工程师，在听到需求的时候，可以根据自己的业务能力，判断出来这些需求中，哪些是有可能变化的，哪些是不太可能变化的。</strong></p>
+<p><strong>针对这些变化的内容，在编写的过程中，不会写死，而反复确认不可能会变化的需求，会写的简单一些，防止过度设计引起的复杂度。</strong></p>
+<p>简单说，当他拿到需求时，并不单纯是考虑这个需求怎么实现，还会考虑，自己设计的架构体系，扩展性在哪里，在他的眼里，看到的需求会被分解，折分，然后自己的技术方案，会挨个分解，分配。</p>
+<p>而且会拿着自己的架构体系跟领导沟通，讲清楚。</p>
+<p>在完成设计之后，他会很清楚的知道 ，自己设计的系统里，哪些变化是支持的，随便你改，我只需要改动一个很简单的内容。哪些是你绝对不能改的，你要改，我就必须花很大的代价，特别是在已经有线上数据的时候。</p>
+<p>哪一个参数应该直接写一个固定值？哪一个参数应该作为函数的入口参数？</p>
+<p>哪一个参数是需要在程序运行过程中动态调整的？哪一个参数是需要写进配置文件中的？</p>
+<p>什么样的变化是支持的？短信通道是有可能变化的，而调用短信通道的地方可能会有点多，所以我必须把短信通道抽象，并封装在一个公共接口，如果需要更换短信通道，我可能只需要更改一个配置文件就好了。</p>
+<p>那么什么样的变化是不支持的？我不需要不停机就更换短信通道的功能，除非你在后台系统中提前配置好，或者是有明确的需要，我做出这么一个东西出来。往往在前期，不会用到。</p>
+<p>一段代码（比如求两点距离），用到了两次以上，就要考虑写成一个函数调用。一个函数，在很多功能模块都要用到，就要考虑抽取成公共模块，供所有模块调用。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://peterli.club">peter</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://peterli.club/2020/RoboMaster%E8%A7%86%E8%A7%89%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/">https://peterli.club/2020/RoboMaster视觉学习建议/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://peterli.club" target="_blank">代码学习永远在路上</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/RoboMaster/">RoboMaster</a></div><div class="post_share"><div class="social-share" data-image="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fspider.ws.126.net%2Fbfd6e944b6d55a7aa79999f655bba5db.jpeg&amp;refer=http%3A%2F%2Fspider.ws.126.net&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1653714050&amp;t=a398f75de61a279970c545962791c3e4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/Docker-Caffe%E8%AE%AD%E7%BB%83%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B/" title="Docker Caffe训练自定义模型"><img class="cover" src="https://img0.baidu.com/it/u=1443653190,2014929959&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=1080&amp;h=608" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Docker Caffe训练自定义模型</div></div></a></div><div class="next-post pull-right"><a href="/2020/Centos%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%A4%9A%E8%8A%82%E7%82%B9%E9%85%8D%E7%BD%AE/" title="Centos虚拟机多节点配置"><img class="cover" src="https://www.kagoya.jp/howto/wp-content/uploads/202106d_catch.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Centos虚拟机多节点配置</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img.peterli.club/img/profile.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">peter</div><div class="author-info__description">码农</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lealaxy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lealaxy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:lealaxy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://t.me/lealaxy" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">刚入门炼丹，正在努力炼出一炉好丹药。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">视觉学习建议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80"><span class="toc-number">1.2.</span> <span class="toc-text">程序语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C"><span class="toc-number">1.2.1.</span> <span class="toc-text">C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python"><span class="toc-number">1.2.2.</span> <span class="toc-text">Python</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Ubuntu"><span class="toc-number">1.3.</span> <span class="toc-text">操作系统-Ubuntu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Git"><span class="toc-number">1.4.</span> <span class="toc-text">管理工具-Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCV"><span class="toc-number">1.5.</span> <span class="toc-text">OpenCV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-number">1.6.</span> <span class="toc-text">数学基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.7.</span> <span class="toc-text">神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E7%BD%91%E7%AB%99"><span class="toc-number">1.8.</span> <span class="toc-text">推荐网站</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stackoverflow"><span class="toc-number">1.8.1.</span> <span class="toc-text">stackoverflow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Github"><span class="toc-number">1.8.2.</span> <span class="toc-text">Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gitee"><span class="toc-number">1.8.3.</span> <span class="toc-text">Gitee</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#One-more-thing"><span class="toc-number">1.9.</span> <span class="toc-text">One more thing</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/" title="搭建Docker私有仓库"><img src="https://goharbor.io/img/logos/harbor-horizontal-color.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="搭建Docker私有仓库"/></a><div class="content"><a class="title" href="/2022/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/" title="搭建Docker私有仓库">搭建Docker私有仓库</a><time datetime="2022-10-14T02:48:08.000Z" title="发表于 2022-10-14 10:48:08">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/%5Bdocker%5D%E6%9E%84%E5%BB%BACUDA%E9%95%9C%E5%83%8F/" title="「docker」构建CUDA镜像"><img src="https://img2.baidu.com/it/u=4068033886,1626221935&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=PNG?w=640&amp;h=286" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「docker」构建CUDA镜像"/></a><div class="content"><a class="title" href="/2022/%5Bdocker%5D%E6%9E%84%E5%BB%BACUDA%E9%95%9C%E5%83%8F/" title="「docker」构建CUDA镜像">「docker」构建CUDA镜像</a><time datetime="2022-05-24T10:00:44.000Z" title="发表于 2022-05-24 18:00:44">2022-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/%5B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%5D%E4%BD%99%E5%BC%A6%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%8E%87/" title="「深度学习基础」余弦退火学习率-PyTorch版"><img src="https://img0.baidu.com/it/u=355673106,1614830790&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「深度学习基础」余弦退火学习率-PyTorch版"/></a><div class="content"><a class="title" href="/2022/%5B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%5D%E4%BD%99%E5%BC%A6%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%8E%87/" title="「深度学习基础」余弦退火学习率-PyTorch版">「深度学习基础」余弦退火学习率-PyTorch版</a><time datetime="2022-04-29T10:00:44.000Z" title="发表于 2022-04-29 18:00:44">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/ubuntu%E4%B8%8B%E5%9B%9E%E9%80%80%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC/" title="ubuntu下回退内核版本"><img src="https://object-lealaxy.oss-cn-beijing.aliyuncs.com/img/image-20200427113426863.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu下回退内核版本"/></a><div class="content"><a class="title" href="/2021/ubuntu%E4%B8%8B%E5%9B%9E%E9%80%80%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC/" title="ubuntu下回退内核版本">ubuntu下回退内核版本</a><time datetime="2021-06-18T13:07:58.000Z" title="发表于 2021-06-18 21:07:58">2021-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/docker%E7%AC%94%E8%AE%B0/" title="docker笔记"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fask-fd.zol-img.com.cn%2Fg5%2FM00%2F08%2F04%2FChMkJlo-qF6IeYkzAATACznjbq0AAjbxgCO83gABMAj575.jpg&amp;refer=http%3A%2F%2Fask-fd.zol-img.com.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1653714439&amp;t=b7f621183e4eabbabb7036e1667f3015" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker笔记"/></a><div class="content"><a class="title" href="/2021/docker%E7%AC%94%E8%AE%B0/" title="docker笔记">docker笔记</a><time datetime="2021-05-24T13:07:58.000Z" title="发表于 2021-05-24 21:07:58">2021-05-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023 By peter</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="https://www.beian.gov.cn/img/new/gongan.png"><span>鲁ICP备19056758号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '5309ad7516a2addd807f',
+      clientSecret: '8389b934bfae230f4a9b7d318c715221b4974cf7',
+      repo: 'lealaxy.github.io',
+      owner: 'lealaxy',
+      admin: ['lealaxy'],
+      id: '1293393e79103480978b88ddf3de51c3',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.textContent= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

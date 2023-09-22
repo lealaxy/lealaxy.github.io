@@ -1,0 +1,701 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>基于自定义数据集的Caffe模型生成 | 代码学习永远在路上</title><meta name="author" content="peter"><meta name="copyright" content="peter"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="首先，整个的工程目录大概是这样的:每个文件对应的功能会在后面的文章中介绍，现在可以先不急于创建整个工程目录。  准备数据集 给数据集重新命名 每一张图片前都插入图片的标签，可以使用ubuntu的批量重命名的功能．比如说我要做一个二分类的网络，命名格式应该是这样的：其中每个图片的开头都是图片的标签，"><link rel="shortcut icon" href="https://img.peterli.club/img/profile.png"><link rel="canonical" href="https://peterli.club/2020/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84Caffe%E6%A8%A1%E5%9E%8B%E7%94%9F%E6%88%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-c9hz390Wld"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e50dee5804918429b74a301c425729fe";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '基于自定义数据集的Caffe模型生成',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-22 15:58:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img.peterli.club/img/profile.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/ML/"><i class="fa-fw fa-solid fa-robot"></i><span> 机器学习</span></a></li><li><a class="site-page child" href="/docker/"><i class="fa-fw fa-brands fa-docker"></i><span> Docker</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.fif.it/media/k2/items/cache/77e3798bb9782084333898c5f75d9aab_XL.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="代码学习永远在路上"><span class="site-name">代码学习永远在路上</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/ML/"><i class="fa-fw fa-solid fa-robot"></i><span> 机器学习</span></a></li><li><a class="site-page child" href="/docker/"><i class="fa-fw fa-brands fa-docker"></i><span> Docker</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">基于自定义数据集的Caffe模型生成</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-27T14:45:33.000Z" title="发表于 2020-05-27 22:45:33">2020-05-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-22T07:58:28.829Z" title="更新于 2023-09-22 15:58:28">2023-09-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Machine-learning/">Machine learning</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Machine-learning/Caffe/">Caffe</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="基于自定义数据集的Caffe模型生成"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="https://www.microsoft.com/en-us/CMSImages/AI_AIPlatform_Caffe2_491x276.jpg?version=23c76694-e7db-6da1-65cf-8248206ea83e" alt=""><br>
+首先，整个的工程目录大概是这样的:每个文件对应的功能会在后面的文章中介绍，现在可以先不急于创建整个工程目录。<br>
+<img src="https://i.loli.net/2019/12/14/pojktLWQgvVHTJM.png" alt="image.png"></p>
+<h2 id="准备数据集">准备数据集</h2>
+<h3 id="给数据集重新命名">给数据集重新命名</h3>
+<p>每一张图片前都插入图片的标签，可以使用ubuntu的批量重命名的功能．比如说我要做一个二分类的网络，命名格式应该是这样的：<img src="https://i.loli.net/2019/12/14/s2Bcw7SQqrOlVIY.png" alt="2019-12-14
+22-09-08屏幕截图.png">其中每个图片的开头都是图片的标签，这样方便与生成图片txt</p>
+<h3 id="新建两个文件夹用于存放数据集和验证集">新建两个文件夹用于存放数据集和验证集</h3>
+<p><img src="https://img-blog.csdn.net/20170822235642873?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSGVsbG9IYWlibw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+训练集和测试集的图片比例为８：２，也就是说你一共有一百张图片，８０张放入train文件夹里．２０张放入val文件夹里</p>
+<h3 id="生成train-txt和val-txt用来保存图片名称和对应标签">生成train.txt和val.txt用来保存图片名称和对应标签</h3>
+<p>新建一个python文件，命名为<code>get_data.py</code></p>
+<pre><code># -*- coding: UTF-8 -*-
+import os
+import re
+path_train = #&quot;train文件夹的路径&quot; #建议是用绝对路径
+path_val = #&quot;val文件夹的路径&quot;
+path_txt = #&quot;生成txt文件夹的路径&quot;
+if not os.path.exists(path_train):
+    print (&quot;训练文件夹路径不存在！&quot;)
+    ox._exit()
+else:
+    print (&quot;成功加载训练文件夹&quot;)
+if not os.path.exists(path_val):
+    print (&quot;验证文件夹路径不存在！&quot;)
+    ox._exit()
+else:
+    print (&quot;成功加载验证文件夹&quot;)
+file_train = open(path_txt + '/train.txt','wt')
+file_val = open(path_txt + '/val.txt','wt')
+file_train.truncate()
+file_val.truncate()
+pa = r&quot;.+(?=\.)&quot;
+pattern = re.compile(pa)
+print (&quot;正在生成train.txt&quot;)
+for filename in os.listdir(path_train):
+    group_lable = pattern.search(filename)
+    str_label = str(group_lable.group())
+    if str_label[0]=='0':
+        train_lable = '0'
+    elif str_label[0]=='1':
+        train_lable = '1'
+    else:
+        print (&quot;文件命名格式错误！&quot;)
+        ox._exit()
+    file_train.write(filename+' '+train_lable+'\n')
+print (&quot;成功生成train.txt&quot;)
+print (&quot;-----------------------------------&quot;)
+print (&quot;正在生成val.txt&quot;)
+for filename in os.listdir(path_val):
+    group_lable = pattern.search(filename)
+    str_label = str(group_lable.group())
+    if str_label[0]=='0':
+        val_lable = '0'
+    elif str_label[0]=='1':
+        val_lable = '1'
+    else:
+        print (&quot;文件命名格式错误！&quot;)
+        ox._exit()
+    file_val.write(filename+' '+val_lable+'\n')
+print (&quot;成功生成val.txt&quot;)
+print (&quot;退出程序&quot;)
+</code></pre>
+<p>然后运行脚本<code>sudo python get_data.py</code><br>
+这样就生成了两个txt文件，如果你的脚本不报错，文件应该是长成这个样的．<img src="https://i.loli.net/2019/12/14/GjP5XkZ2vgNSQa7.png" alt="2019-12-1422-22-21屏幕截图.png"></p>
+<h2 id="准备LMDB文件和均值文件">准备LMDB文件和均值文件</h2>
+<h3 id="LMDB文件">ＬＭＤＢ文件</h3>
+<p>我们要生成能让网络结构文件“读懂”的标签文件格式——lmdb，其实还有很多其它格式：leveldb、hdf5等等。那么我们是以哪种形式生成lmdb文件呢？用的是caffe提供的convert_imageset功能，让txt格式文件转换成lmdb格式<br>
+我们通过以下脚本实现转换： <em><strong>需要改一下前两个路径</strong></em><br>
+<code>create_imagenet.sh</code></p>
+<pre><code>EXAMPLE=/home/peter/桌面/caffe自定义数据集 #工程的路径 
+TOOLS=/home/peter/桌面/caffeBuild/tools #caffe工具路径,一般是在caffe目录下的tools文件夹下 
+TRAIN_DATA_ROOT=$EXAMPLE/train/ #训练集路径 
+VAL_DATA_ROOT=$EXAMPLE/val/ #测试集路径 
+RESIZE=true #这里是resize图片，我这里时开启此功能，resize成20*20
+if $RESIZE; then
+  RESIZE_HEIGHT=20
+  RESIZE_WIDTH=20
+else
+  RESIZE_HEIGHT=0
+  RESIZE_WIDTH=0
+fi
+if [ ! -d &quot;$TRAIN_DATA_ROOT&quot; ]; then
+  echo &quot;Error: 训练集路径错误: $TRAIN_DATA_ROOT&quot;
+  echo &quot;Set the TRAIN_DATA_ROOT variable in create_imagenet.sh to the path&quot; \
+       &quot;where the ImageNet training data is stored.&quot;
+  exit 1
+fi
+if [ ! -d &quot;$VAL_DATA_ROOT&quot; ]; then
+  echo &quot;Error: 验证集路径错误: $VAL_DATA_ROOT&quot;
+  echo &quot;Set the VAL_DATA_ROOT variable in create_imagenet.sh to the path&quot; \
+       &quot;where the ImageNet validation data is stored.&quot;
+  exit 1
+fi
+#生成前需要先删除已有的文件夹 必须，不然会报错
+rm -rf $EXAMPLE/train_lmdb
+rm -rf $EXAMPLE/val_lmdb
+echo &quot;删除已有的lmdb文件夹&quot;
+#训练_lmdb
+echo &quot;生成训练lmdb&quot;
+GLOG_logtostderr=1 $TOOLS/convert_imageset \
+    --resize_height=$RESIZE_HEIGHT \
+    --resize_width=$RESIZE_WIDTH \
+    --shuffle \
+    $TRAIN_DATA_ROOT \
+    $EXAMPLE/train.txt \
+    $EXAMPLE/train_lmdb
+#生成的训练lmdb文件所在文件夹，注意train_lmdb是文件夹名称
+#测试_lmdb
+echo &quot;生成测试lmdb&quot;
+GLOG_logtostderr=1 $TOOLS/convert_imageset \
+    --resize_height=$RESIZE_HEIGHT \
+    --resize_width=$RESIZE_WIDTH \
+    --shuffle \
+    $VAL_DATA_ROOT \
+    $EXAMPLE/val.txt \
+    $EXAMPLE/val_lmdb
+#生成的测试lmdb文件所在文件夹，注意val_lmdb文件夹名称
+#解锁生成的文件夹
+echo &quot;解锁lmdb文件夹&quot;
+chmod -R 777 $EXAMPLE/train_lmdb
+chmod -R 777 $EXAMPLE/val_lmdb
+echo &quot;完成&quot;
+</code></pre>
+<p>保存退出然后运行<code>sudo sh create_imagenet.sh</code><br>
+脚本正常运行完之后应该是这个样子的,如果有报错多半是你的路径填的不对,仔细检查一下.<br>
+<img src="https://i.loli.net/2019/12/14/o6sL5hOWl1DpN7i.png" alt="2019-12-1422-30-13屏幕截图.png"></p>
+<h3 id="均值文件">均值文件</h3>
+<p>生成均值文件的脚本比较简单，路径都可以从上一个脚本复制过来<br>
+<code>compute_image_mean.sh</code></p>
+<pre><code>EXAMPLE=/home/peter/桌面/caffe自定义数据集 #工程的路径 
+TOOLS=/home/peter/桌面/caffeBuild/tools #caffe工具路径 
+$TOOLS/compute_image_mean $EXAMPLE/train_lmdb \
+        $EXAMPLE/train_mean.binaryproto
+$TOOLS/compute_image_mean $EXAMPLE/val_lmdb \
+        $EXAMPLE/val_mean.binaryproto
+echo &quot;完成&quot;
+</code></pre>
+<p>脚本运行完成后应该生成了一个这样的文件<br>
+<img src="https://i.loli.net/2019/12/14/K3a5eNRfSubonkD.png" alt="image.png"></p>
+<h2 id="准备网络结构文件和训练文件">准备网络结构文件和训练文件</h2>
+<p>这个文件，是网络的结构文件，一般说设计网络，狭义上就是指的设计这个文件的内容，对于初学者，我建议你们先用简单的模板训练，在看懂的基础上，了解这个文件的结构，以及自己如何去设计这个文件。<br>
+caffe自带的demo中有很简单的，也很经典的LeNet、AlexNet、GoogLeNet模型(google为了向经典的LeNet致敬，才将L大写)，再次强烈建议大家将这些模型的结构看一遍，弄懂为何这样设计，这对你以后自己去设计网络有很大的启发，当然基本的数理统计算法，比如经典的BP算法、autoencoder、基本的激活函数sigmoid函数LRN函数等等，这些需要根据格个人情况自行补课。<br>
+这里给出了一个简单的网络结构文件．只需要更改一下路径和一些简单的信息即可使用<br>
+在工程目录下新建一个make_model文件夹，在文件夹中新建一些文档<br>
+<img src="https://i.loli.net/2019/12/14/9NqC8RnvopmBEdg.png" alt="image.png"><br>
+<img src="https://i.loli.net/2019/12/14/5hFyXB7GVnHsqjE.png" alt="image.png"></p>
+<h3 id="train-val-prototxt"><strong>train_val.prototxt</strong></h3>
+<p>这个文件需要改一些训练集的路径和最后输出的分类数量</p>
+<pre><code>name: &quot;LeNet&quot;
+layer &#123;
+  name: &quot;mnist&quot;
+  type: &quot;Data&quot;
+  top: &quot;data&quot;
+  top: &quot;label&quot;
+  include &#123;
+    phase: TRAIN
+  &#125;
+  transform_param &#123;
+    mirror: true
+    crop_size: 20
+    mean_file: &quot;/home/peter/桌面/caffe自定义数据集/train_mean.binaryproto&quot; #均值文件的路径
+  &#125;
+  data_param &#123;
+    source: &quot;/home/peter/桌面/caffe自定义数据集/train_lmdb&quot; #训练LMDB的路径
+    batch_size: 32
+    backend: LMDB
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;mnist&quot;
+  type: &quot;Data&quot;
+  top: &quot;data&quot;
+  top: &quot;label&quot;
+  include &#123;
+    phase: TEST 
+  &#125;
+  transform_param &#123;
+    mirror: false
+    crop_size: 20
+    mean_file: &quot;/home/peter/桌面/caffe自定义数据集/val_mean.binaryproto&quot; #均值文件的路径
+  &#125;
+  data_param &#123;
+    source: &quot;/home/peter/桌面/caffe自定义数据集/val_lmdb&quot; #验证LMDB的路径
+    batch_size: 50
+    backend: LMDB
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;conv1&quot;
+  type: &quot;Convolution&quot;
+  bottom: &quot;data&quot;
+  top: &quot;conv1&quot;
+  param &#123;
+    lr_mult: 1
+  &#125;
+  param &#123;
+    lr_mult: 2
+  &#125;
+  convolution_param &#123;
+    num_output: 20
+    kernel_size: 5
+    stride: 1
+    weight_filler &#123;
+      type: &quot;xavier&quot;
+    &#125;
+    bias_filler &#123;
+      type: &quot;constant&quot;
+    &#125;
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;pool1&quot;
+  type: &quot;Pooling&quot;
+  bottom: &quot;conv1&quot;
+  top: &quot;pool1&quot;
+  pooling_param &#123;
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;conv2&quot;
+  type: &quot;Convolution&quot;
+  bottom: &quot;pool1&quot;
+  top: &quot;conv2&quot;
+  param &#123;
+    lr_mult: 1
+  &#125;
+  param &#123;
+    lr_mult: 2
+  &#125;
+  convolution_param &#123;
+    num_output: 50
+    kernel_size: 5
+    stride: 1
+    weight_filler &#123;
+      type: &quot;xavier&quot;
+    &#125;
+    bias_filler &#123;
+      type: &quot;constant&quot;
+    &#125;
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;pool2&quot;
+  type: &quot;Pooling&quot;
+  bottom: &quot;conv2&quot;
+  top: &quot;pool2&quot;
+  pooling_param &#123;
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;fc1&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;pool2&quot;
+  top: &quot;ip1&quot;
+  param &#123;
+    lr_mult: 1
+  &#125;
+  param &#123;
+    lr_mult: 2
+  &#125;
+  inner_product_param &#123;
+    num_output: 500
+    weight_filler &#123;
+      type: &quot;xavier&quot;
+    &#125;
+    bias_filler &#123;
+      type: &quot;constant&quot;
+    &#125;
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;relu1&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;ip1&quot;
+  top: &quot;ip1&quot;
+&#125;
+layer &#123;
+  name: &quot;ip2&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;ip1&quot;
+  top: &quot;ip2&quot;
+  param &#123;
+    lr_mult: 1
+  &#125;
+  param &#123;
+    lr_mult: 2
+  &#125;
+  inner_product_param &#123;
+    num_output: 2  #最后输出的分类数量，我这里是二分类，所以写２
+    weight_filler &#123;
+      type: &quot;xavier&quot;
+    &#125;
+    bias_filler &#123;
+      type: &quot;constant&quot;
+    &#125;
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;loss&quot;
+  type: &quot;Softmax&quot;
+  bottom: &quot;ip2&quot;
+  top: &quot;loss&quot;
+&#125;
+</code></pre>
+<h3 id="solver-prototxt"><strong>solver.prototxt</strong></h3>
+<p>这个文件就是配置一下训练时的规则，这个文件里面的参数也是模型质量的关键。</p>
+<pre><code>net: &quot;/home/peter/桌面/caffe自定义数据集/make_model/train_val.prototxt&quot; #这里时train_val.prototxt文件的路径
+test_iter: 8                # x * 50 = 训练集大小
+test_interval: 50
+base_lr: 0.01
+lr_policy: &quot;step&quot;
+gamma: 0.1
+stepsize: 100
+display: 20
+max_iter: 100              #最大训练次数
+momentum: 0.9
+weight_decay: 0.0005
+snapshot: 20                #每50次保存一次模型快照
+snapshot_prefix: &quot;/home/peter/桌面/caffe自定义数据集/save_model/&quot; #生成快照的路径
+solver_mode: CPU
+</code></pre>
+<h3 id="deploy-prototxt"><strong>deploy.prototxt</strong></h3>
+<p>这个文件是根据train_val.prototxt编写的，里面结构大体一样，只是把训练的参数去掉。<br>
+这个文件我们只需要修改一处，将输出的类别改为2</p>
+<pre><code>name: &quot;LeNet&quot;
+layer &#123;
+  name: &quot;data&quot;
+  type: &quot;Input&quot;
+  top: &quot;data&quot;
+  input_param &#123; shape: &#123; dim: 1 dim: 3 dim: 20 dim: 20&#125; &#125;
+&#125;
+layer &#123;
+  name: &quot;conv1&quot;
+  type: &quot;Convolution&quot;
+  bottom: &quot;data&quot;
+  top: &quot;conv1&quot;
+  param &#123;
+    lr_mult: 1
+  &#125;
+  param &#123;
+    lr_mult: 2
+  &#125;
+  convolution_param &#123;
+    num_output: 20
+    kernel_size: 5
+    stride: 1
+    weight_filler &#123;
+      type: &quot;xavier&quot;
+    &#125;
+    bias_filler &#123;
+      type: &quot;constant&quot;
+    &#125;
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;pool1&quot;
+  type: &quot;Pooling&quot;
+  bottom: &quot;conv1&quot;
+  top: &quot;pool1&quot;
+  pooling_param &#123;
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;conv2&quot;
+  type: &quot;Convolution&quot;
+  bottom: &quot;pool1&quot;
+  top: &quot;conv2&quot;
+  param &#123;
+    lr_mult: 1
+  &#125;
+  param &#123;
+    lr_mult: 2
+  &#125;
+  convolution_param &#123;
+    num_output: 50
+    kernel_size: 5
+    stride: 1
+    weight_filler &#123;
+      type: &quot;xavier&quot;
+    &#125;
+    bias_filler &#123;
+      type: &quot;constant&quot;
+    &#125;
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;pool2&quot;
+  type: &quot;Pooling&quot;
+  bottom: &quot;conv2&quot;
+  top: &quot;pool2&quot;
+  pooling_param &#123;
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;fc1&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;pool2&quot;
+  top: &quot;ip1&quot;
+  param &#123;
+    lr_mult: 1
+  &#125;
+  param &#123;
+    lr_mult: 2
+  &#125;
+  inner_product_param &#123;
+    num_output: 500
+    weight_filler &#123;
+      type: &quot;xavier&quot;
+    &#125;
+    bias_filler &#123;
+      type: &quot;constant&quot;
+    &#125;
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;relu1&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;ip1&quot;
+  top: &quot;ip1&quot;
+&#125;
+layer &#123;
+  name: &quot;ip2&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;ip1&quot;
+  top: &quot;ip2&quot;
+  param &#123;
+    lr_mult: 1
+  &#125;
+  param &#123;
+    lr_mult: 2
+  &#125;
+  inner_product_param &#123;
+    num_output: 2 #最后的分类数量
+    weight_filler &#123;
+      type: &quot;xavier&quot;
+    &#125;
+    bias_filler &#123;
+      type: &quot;constant&quot;
+    &#125;
+  &#125;
+&#125;
+layer &#123;
+  name: &quot;loss&quot;
+  type: &quot;Softmax&quot;
+  bottom: &quot;ip2&quot;
+  top: &quot;loss&quot;
+&#125;
+</code></pre>
+<p>至此，三个网络文件已经准备好了，下一步就是开始训练了．</p>
+<h2 id="开始训练">开始训练</h2>
+<p>新建一个脚本来训练网络 <code>caffe_train.sh</code></p>
+<pre><code>EXAMPLE=/home/peter/桌面/caffe自定义数据集 #工程的路径
+caffe train --solver=$EXAMPLE/make_model/solver.prototxt
+chmod -R 777 $EXAMPLE/save_model
+echo &quot;完成&quot;
+</code></pre>
+<p>如果你的路径填的都是对的，你会在工程目录的save_model文件夹下看到caffe训练出来的模型<br>
+<img src="https://i.loli.net/2019/12/14/p7dJQPgcslTxzuO.png" alt="image.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://peterli.club">peter</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://peterli.club/2020/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84Caffe%E6%A8%A1%E5%9E%8B%E7%94%9F%E6%88%90/">https://peterli.club/2020/基于自定义数据集的Caffe模型生成/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://peterli.club" target="_blank">代码学习永远在路上</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Machine-learning/">Machine learning</a><a class="post-meta__tags" href="/tags/Caffe/">Caffe</a></div><div class="post_share"><div class="social-share" data-image="https://www.fif.it/media/k2/items/cache/77e3798bb9782084333898c5f75d9aab_XL.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/YoloV4%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/" title="YoloV4使用体验"><img class="cover" src="https://img0.baidu.com/it/u=1701113910,2775267702&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=889&amp;h=500" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">YoloV4使用体验</div></div></a></div><div class="next-post pull-right"><a href="/2020/Spring-Cloud-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Spring Cloud 学习笔记"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fphoto%2F2008-6-13%2F200806131108306030.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1653714142&amp;t=57ad1ad0d887b8d54abdac0b8b4b6031" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring Cloud 学习笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/Docker-Caffe%E8%AE%AD%E7%BB%83%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B/" title="Docker Caffe训练自定义模型"><img class="cover" src="https://img0.baidu.com/it/u=1443653190,2014929959&fm=253&fmt=auto&app=120&f=JPEG?w=1080&h=608" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-30</div><div class="title">Docker Caffe训练自定义模型</div></div></a></div><div><a href="/2020/Tf2-X%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/" title="Tf2.X安装指南"><img class="cover" src="https://img2.baidu.com/it/u=1618167363,156084292&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=500" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-28</div><div class="title">Tf2.X安装指南</div></div></a></div><div><a href="/2020/YoloV4%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/" title="YoloV4使用体验"><img class="cover" src="https://img0.baidu.com/it/u=1701113910,2775267702&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-27</div><div class="title">YoloV4使用体验</div></div></a></div><div><a href="/2022/%5B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%5D%E4%BD%99%E5%BC%A6%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%8E%87/" title="「深度学习基础」余弦退火学习率-PyTorch版"><img class="cover" src="https://img0.baidu.com/it/u=355673106,1614830790&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-29</div><div class="title">「深度学习基础」余弦退火学习率-PyTorch版</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img.peterli.club/img/profile.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">peter</div><div class="author-info__description">码农</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lealaxy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lealaxy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:lealaxy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://t.me/lealaxy" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">刚入门炼丹，正在努力炼出一炉好丹药。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text">准备数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E6%95%B0%E6%8D%AE%E9%9B%86%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D"><span class="toc-number">1.1.</span> <span class="toc-text">给数据集重新命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E7%94%A8%E4%BA%8E%E5%AD%98%E6%94%BE%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E9%AA%8C%E8%AF%81%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">新建两个文件夹用于存放数据集和验证集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90train-txt%E5%92%8Cval-txt%E7%94%A8%E6%9D%A5%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87%E5%90%8D%E7%A7%B0%E5%92%8C%E5%AF%B9%E5%BA%94%E6%A0%87%E7%AD%BE"><span class="toc-number">1.3.</span> <span class="toc-text">生成train.txt和val.txt用来保存图片名称和对应标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87LMDB%E6%96%87%E4%BB%B6%E5%92%8C%E5%9D%87%E5%80%BC%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">准备LMDB文件和均值文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LMDB%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">ＬＭＤＢ文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%87%E5%80%BC%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">均值文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%E5%92%8C%E8%AE%AD%E7%BB%83%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">准备网络结构文件和训练文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#train-val-prototxt"><span class="toc-number">3.1.</span> <span class="toc-text">train_val.prototxt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#solver-prototxt"><span class="toc-number">3.2.</span> <span class="toc-text">solver.prototxt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deploy-prototxt"><span class="toc-number">3.3.</span> <span class="toc-text">deploy.prototxt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83"><span class="toc-number">4.</span> <span class="toc-text">开始训练</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/" title="搭建Docker私有仓库"><img src="https://goharbor.io/img/logos/harbor-horizontal-color.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="搭建Docker私有仓库"/></a><div class="content"><a class="title" href="/2022/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/" title="搭建Docker私有仓库">搭建Docker私有仓库</a><time datetime="2022-10-14T02:48:08.000Z" title="发表于 2022-10-14 10:48:08">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/%5Bdocker%5D%E6%9E%84%E5%BB%BACUDA%E9%95%9C%E5%83%8F/" title="「docker」构建CUDA镜像"><img src="https://img2.baidu.com/it/u=4068033886,1626221935&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=PNG?w=640&amp;h=286" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「docker」构建CUDA镜像"/></a><div class="content"><a class="title" href="/2022/%5Bdocker%5D%E6%9E%84%E5%BB%BACUDA%E9%95%9C%E5%83%8F/" title="「docker」构建CUDA镜像">「docker」构建CUDA镜像</a><time datetime="2022-05-24T10:00:44.000Z" title="发表于 2022-05-24 18:00:44">2022-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/%5B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%5D%E4%BD%99%E5%BC%A6%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%8E%87/" title="「深度学习基础」余弦退火学习率-PyTorch版"><img src="https://img0.baidu.com/it/u=355673106,1614830790&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「深度学习基础」余弦退火学习率-PyTorch版"/></a><div class="content"><a class="title" href="/2022/%5B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%5D%E4%BD%99%E5%BC%A6%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%8E%87/" title="「深度学习基础」余弦退火学习率-PyTorch版">「深度学习基础」余弦退火学习率-PyTorch版</a><time datetime="2022-04-29T10:00:44.000Z" title="发表于 2022-04-29 18:00:44">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/ubuntu%E4%B8%8B%E5%9B%9E%E9%80%80%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC/" title="ubuntu下回退内核版本"><img src="https://object-lealaxy.oss-cn-beijing.aliyuncs.com/img/image-20200427113426863.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu下回退内核版本"/></a><div class="content"><a class="title" href="/2021/ubuntu%E4%B8%8B%E5%9B%9E%E9%80%80%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC/" title="ubuntu下回退内核版本">ubuntu下回退内核版本</a><time datetime="2021-06-18T13:07:58.000Z" title="发表于 2021-06-18 21:07:58">2021-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/docker%E7%AC%94%E8%AE%B0/" title="docker笔记"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fask-fd.zol-img.com.cn%2Fg5%2FM00%2F08%2F04%2FChMkJlo-qF6IeYkzAATACznjbq0AAjbxgCO83gABMAj575.jpg&amp;refer=http%3A%2F%2Fask-fd.zol-img.com.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1653714439&amp;t=b7f621183e4eabbabb7036e1667f3015" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker笔记"/></a><div class="content"><a class="title" href="/2021/docker%E7%AC%94%E8%AE%B0/" title="docker笔记">docker笔记</a><time datetime="2021-05-24T13:07:58.000Z" title="发表于 2021-05-24 21:07:58">2021-05-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023 By peter</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="https://www.beian.gov.cn/img/new/gongan.png"><span>鲁ICP备19056758号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '5309ad7516a2addd807f',
+      clientSecret: '8389b934bfae230f4a9b7d318c715221b4974cf7',
+      repo: 'lealaxy.github.io',
+      owner: 'lealaxy',
+      admin: ['lealaxy'],
+      id: '199418c0095758293b76ceb336ca1a94',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.textContent= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

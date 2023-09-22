@@ -1,0 +1,406 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>代码学习永远在路上 - 李云灏的博客</title><meta name="author" content="peter"><meta name="copyright" content="peter"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="码农"><link rel="shortcut icon" href="https://img.peterli.club/img/profile.png"><link rel="canonical" href="https://peterli.club/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-c9hz390Wld"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e50dee5804918429b74a301c425729fe";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '代码学习永远在路上',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-09-22 15:58:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img.peterli.club/img/profile.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/ML/"><i class="fa-fw fa-solid fa-robot"></i><span> 机器学习</span></a></li><li><a class="site-page child" href="/docker/"><i class="fa-fw fa-brands fa-docker"></i><span> Docker</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://img.peterli.club/img/8f23d0adaf83fd2aefae793948b0bc3a.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="代码学习永远在路上"><span class="site-name">代码学习永远在路上</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/ML/"><i class="fa-fw fa-solid fa-robot"></i><span> 机器学习</span></a></li><li><a class="site-page child" href="/docker/"><i class="fa-fw fa-brands fa-docker"></i><span> Docker</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">代码学习永远在路上</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/lealaxy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:lealaxy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://t.me/lealaxy" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/" title="搭建Docker私有仓库"><img class="post-bg" src="https://goharbor.io/img/logos/harbor-horizontal-color.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="搭建Docker私有仓库"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/" title="搭建Docker私有仓库">搭建Docker私有仓库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-14T02:48:08.000Z" title="发表于 2022-10-14 10:48:08">2022-10-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Docker/">Docker</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Docker/DockerHub/">DockerHub</a></span></div><div class="content">Harbor简介
+
+VMware开源的企业级Registry项目Harbor，以Docker公司开源的registry 为基础，提供了管理UI, 基于角色的访问控制(Role Based Access Control)，AD/LDAP集成、以及审计日志(Audit logging) 等企业用户需求的功能，同时还原生支持中文，主要特点：
+
+基于角色的访问控制 - 用户与 Docker 镜像仓库通过“项目”进行组织管理，一个用户可以对多个镜像仓库在同一命名空间（project）里有不同的权限。
+镜像复制 - 镜像可以在多个 Registry 实例中复制（同步）。尤其适合于负载均衡，高可用，混合云和多云的场景。
+图形化用户界面 - 用户可以通过浏览器来浏览，检索当前 Docker 镜像仓库，管理项目和命名空间。
+AD/LDAP 支持 - Harbor 可以集成企业内部已有的 AD/LDAP，用于鉴权认证管理。
+审计管理 - 所有针对镜像仓库的操作都可以被记录追溯，用于审计管理。
+国际化 - 已拥有英文、中文、德文、日文和俄文的本地化版本。更多的语言将会添加进来。
+RESTful API -  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/%5Bdocker%5D%E6%9E%84%E5%BB%BACUDA%E9%95%9C%E5%83%8F/" title="「docker」构建CUDA镜像"><img class="post-bg" src="https://img2.baidu.com/it/u=4068033886,1626221935&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=PNG?w=640&amp;h=286" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「docker」构建CUDA镜像"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/%5Bdocker%5D%E6%9E%84%E5%BB%BACUDA%E9%95%9C%E5%83%8F/" title="「docker」构建CUDA镜像">「docker」构建CUDA镜像</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-24T10:00:44.000Z" title="发表于 2022-05-24 18:00:44">2022-05-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Docker/">Docker</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Docker/Dockerfile/">Dockerfile</a></span></div><div class="content">背景
+实验室的服务器内核版本太老了，有一个项目需要升级内核，但是服务器上还有一堆东西不敢随便升级。
+于是就准备用docker构建一个镜像，安装CUDA和Python环境，平时ssh连进去炼丹
+需求
+炼丹必备的cuda肯定是必不可少的，ssh服务器也需要配置，既然准备写一个dockerfile，那python环境和换源之类的也就一块打包到镜像里去得了。
+以后谁想炼丹直接新建一个容器，映射好端口之后容器里炼丹的基础设施就都有了。
+安装
+宿主机安装CUDA驱动
+想要容器能用CUDA，宿主机肯定要安装CUDA驱动，这部分就不讲了，好多博客都有。
+宿主机安装NVIDIA-CONTAINER-RUNTIME
+在https://nvidia.github.io/nvidia-container-runtime/ 查看支持的操作系统和版本，并根据对应选项，添加源，因为我是centos7，所以添加方式为：
+123distribution=$(. /etc/os-release;echo $ID$VERSION_ID)curl -s -L https://nvidia.github.io/nvidia-c ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/%5B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%5D%E4%BD%99%E5%BC%A6%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%8E%87/" title="「深度学习基础」余弦退火学习率-PyTorch版"><img class="post-bg" src="https://img0.baidu.com/it/u=355673106,1614830790&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「深度学习基础」余弦退火学习率-PyTorch版"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/%5B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%5D%E4%BD%99%E5%BC%A6%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%8E%87/" title="「深度学习基础」余弦退火学习率-PyTorch版">「深度学习基础」余弦退火学习率-PyTorch版</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-29T10:00:44.000Z" title="发表于 2022-04-29 18:00:44">2022-04-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Machine-learning/">Machine learning</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Machine-learning/PyTorch/">PyTorch</a></span></div><div class="content">模型训练Trick
+背景：深层神经网络难训练是因为学习过程容易陷入到马鞍面中，即在坡面上，一部分点是上升的，一部分点是下降的，如图在z轴上是最小值，而在x轴上是最大值。马鞍面上损失对参数的一阶导数为0，二阶导数的正负值不相同，由于梯度为0，模型无法进一步更新参数，因此模型训练容易陷入马鞍面中不再更新。
+
+而余弦退火学习率可以很好的改善这个问题，这个是Pytorch官方的介绍。
+但是官方的介绍里只有公式，没有告诉我们如何使用。
+公式看不懂的同学不用担心，PyTorch都给我们封装好了，使用起来非常简单，PyTorch自带两个余弦学习率调整的方法，一个是CosineAnnealingLR，另一个是CosineAnnealingWarmRestarts。
+CosineAnnealingLR
+1CosineAnnealingLR(optimizer, T_max, eta_min=0, last_epoch=-1, verbose=False):
+这个比较简单，只对其中的最关键的Tmax参数作一个说明,这个可以理解为余弦函数的半周期.如果max_epoch=50次，那么设置T_max=5则会让 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/ubuntu%E4%B8%8B%E5%9B%9E%E9%80%80%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC/" title="ubuntu下回退内核版本"><img class="post-bg" src="https://object-lealaxy.oss-cn-beijing.aliyuncs.com/img/image-20200427113426863.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu下回退内核版本"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/ubuntu%E4%B8%8B%E5%9B%9E%E9%80%80%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC/" title="ubuntu下回退内核版本">ubuntu下回退内核版本</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-06-18T13:07:58.000Z" title="发表于 2021-06-18 21:07:58">2021-06-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Linux/">Linux</a></span></div><div class="content">查看可用内核信息
+grep menuentry /boot/grub/grub.cfg
+安装回退版本的内核
+x.x.x-x为内核版本,本文以4.18.0-18为例
+sudo apt-get install linux-headers-x.x.x-x-generic linux-image-x.x.x-x-generic
+安装4.18.0-18版本内核
+sudo apt-get install linux-headers-4.18.0-18-generic linux-image-4.18.0-18-generic
+修改GRUB
+sudo gedit /etc/default/grub
+将GRUB_DEFAULT=0修改为你所想要还原的版本号，
+如：GRUB_DEFAULT=&quot;Advanced options for Ubuntu &gt; Ubuntu, with Linux 4.18.0-18-generic&quot;
+更新GRUB
+sudo update-grub 然后重启电脑 使用uname -r查看内核版本
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/docker%E7%AC%94%E8%AE%B0/" title="docker笔记"><img class="post-bg" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fask-fd.zol-img.com.cn%2Fg5%2FM00%2F08%2F04%2FChMkJlo-qF6IeYkzAATACznjbq0AAjbxgCO83gABMAj575.jpg&amp;refer=http%3A%2F%2Fask-fd.zol-img.com.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1653714439&amp;t=b7f621183e4eabbabb7036e1667f3015" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/docker%E7%AC%94%E8%AE%B0/" title="docker笔记">docker笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-05-24T13:07:58.000Z" title="发表于 2021-05-24 21:07:58">2021-05-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Docker/">Docker</a></span></div><div class="content">笔记
+常用命令
+12345678910111213141516171819attach    # 当前shell下attach连接指定运行镜像build     # 通过Dockerfile定制镜像commit    # 提交当前容器为新的镜像cp        # 从容器中拷贝指定文件或目录到宿主机中create    # 创建一个新的容器，同 run 但不启动容器diff      # 查看 docker 容器变化events    # 从docker服务器获取容器实时事件exec      # 在已存在的容器上运行命令export    # 导出容器的内容流作为一个 tar 归档文件【对应 import】history   # 展示一个镜像形成历史images    # 列出系统当前镜像import    # 从tar包中的内容创建一个新的文件系统映像【对应 export】info      # 显示系统相关信息inspect   # 查看容器详细信息kill      # kill 指定的容器load      # 从一个 tar 包中加载一个镜像【对应 save】login  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2020/Docker-Caffe%E8%AE%AD%E7%BB%83%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B/" title="Docker Caffe训练自定义模型"><img class="post-bg" src="https://img0.baidu.com/it/u=1443653190,2014929959&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=1080&amp;h=608" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker Caffe训练自定义模型"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/Docker-Caffe%E8%AE%AD%E7%BB%83%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B/" title="Docker Caffe训练自定义模型">Docker Caffe训练自定义模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-30T12:27:44.000Z" title="发表于 2020-08-30 20:27:44">2020-08-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Machine-learning/">Machine learning</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Machine-learning/Caffe/">Caffe</a></span></div><div class="content">docker安装caffe
+docker构建容器，新建文件Dockerfile，复制进下面的内容，然后运行build构建容器，读条完毕后CPU版的docker Caffe就安装好了。
+1docker build -t caffe:1.0 .
+Dockerfile
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748FROM ubuntu:16.04LABEL maintainer caffe-maint@googlegroups.comRUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \        build-essential \        cmake \        git \        wget \        libatlas-base-dev \        libboost-all-dev \        libgflags-dev \   ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2020/RoboMaster%E8%A7%86%E8%A7%89%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/" title="RoboMaster视觉学习建议"><img class="post-bg" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fspider.ws.126.net%2Fbfd6e944b6d55a7aa79999f655bba5db.jpeg&amp;refer=http%3A%2F%2Fspider.ws.126.net&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1653714050&amp;t=a398f75de61a279970c545962791c3e4" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RoboMaster视觉学习建议"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/RoboMaster%E8%A7%86%E8%A7%89%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/" title="RoboMaster视觉学习建议">RoboMaster视觉学习建议</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-18T10:57:34.000Z" title="发表于 2020-07-18 18:57:34">2020-07-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/RoboMaster/">RoboMaster</a></span></div><div class="content">视觉学习建议
+目录
+
+程序语言
+操作系统
+管理工具
+OpenCV
+数学基础
+神经网络
+推荐网站
+
+
+程序语言
+C++
+​	C++编写起来和C语言一样结构清晰，又在C语言的基础上增加了许多新的功能，还可以直接操作硬件，绝对是研发机器视觉最好的语言。
+​	面向对象，封装、多态、继承这些思想绝对是编程的重点。小型项目可能感觉不出来，一旦项目代码超过千行，如何解耦和划分功能模块就成了所有人不得不面对的问题，而C++正好提供了面向对象的编程模型，又是静态编译型语言，速度快，是一定要学好的。
+​	一个人写代码乱一点可能不要紧，但是多个人一起写代码就需要一个强有力的代码规范，比如变量的命名、类的命名、宏定义的命名和缩进格式等，这里我推荐大家看一下华为的方舟编译器代码规范，学习一下别人的代码是如何编写的。
+Python
+​	Python是我们用来编写深度学习的脚本语言，py的编写方式远比C++简单，开发小型项目的效率比C++高。但是Python是解释型语言，不进行编译，运行时底层有一个Pyhton解释器在动态解释代码，这就造成了Python在开发大型项目时运行速度会变慢，结构不清晰。
+​	我们一般使用 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2020/Centos%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%A4%9A%E8%8A%82%E7%82%B9%E9%85%8D%E7%BD%AE/" title="Centos虚拟机多节点配置"><img class="post-bg" src="https://www.kagoya.jp/howto/wp-content/uploads/202106d_catch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos虚拟机多节点配置"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/Centos%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%A4%9A%E8%8A%82%E7%82%B9%E9%85%8D%E7%BD%AE/" title="Centos虚拟机多节点配置">Centos虚拟机多节点配置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-08T13:58:36.000Z" title="发表于 2020-07-08 21:58:36">2020-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Linux/">Linux</a></span></div><div class="content">VMware创建虚拟机
+单节点创建
+导入ISO镜像
+从阿里源下载Centos7镜像，并导入到VMware中，创建新的虚拟机。
+
+给节点起名
+因为要创建多节点，所以给新的虚拟机命名为Centos7_1，之后创建更多的节点就按序号命名。
+
+选择硬件配置
+虚拟机的硬件配置可以根据需要更改，如果不确定的话也可以安装完毕之后更改硬件配置。
+
+安装Centos7
+选择完硬件配置之后的安装过程就和普通的Cenots安装过程一样，等待一段时间后就会进入Centos安装界面。
+软件选择这里选择开发及生成工作站，如果选择最小系统的话安装结束之后只有一个黑黑的命令行，看不到图形界面，不好操作。
+安装位置新手选择自动分区就可以了。
+安装过程中可以顺便设置一下root密码。
+单节点网卡配置
+安装结束之后就可以看到令人兴奋的图形界面了，但是这个时候的Centos还不能联网，也不能和宿主机互通，使用ifconfig查看网卡信息也获取不到IP地址，所以需要一些设置。
+
+配置VMware虚拟机网络设置
+接下来需要去虚拟机设置界面设置网络适配器为桥接模式，方便后续固定IP地址。
+
+使用命令自动分配IP地址
+接下来需要切换 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2020/Git%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E7%BB%9F%E8%AE%A1/" title="Git仓库代码提交统计"><img class="post-bg" src="https://img0.baidu.com/it/u=2446728729,250871220&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=889&amp;h=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git仓库代码提交统计"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/Git%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E7%BB%9F%E8%AE%A1/" title="Git仓库代码提交统计">Git仓库代码提交统计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-07T06:42:02.000Z" title="发表于 2020-07-07 14:42:02">2020-07-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E4%BA%BA/">工具人</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E4%BA%BA/Git/">Git</a></span></div><div class="content">Git 代码统计
+查看仓库提交者排名前3
+1git log --pretty=&#x27;%aN&#x27; | sort | uniq -c | sort -k1 -n -r | head -n 3
+
+给Git查看某一个用户代码量
+1git log --author=&quot;用户名&quot; --pretty=tformat: --numstat | awk &#x27;&#123; add += $1; subs += $2; loc += $1 - $2 &#125; END &#123; printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc &#125;&#x27; 
+
+统计每个人增删行数
+1git log --format=&#x27;%aN&#x27; | sort -u | while read name; do echo -en &quot;$name\t&quot;; git log --author=&quot;$name&quot; - ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2020/Nginx%E9%85%8D%E7%BD%AE%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%88%B0%E5%90%8E%E7%AB%AF/" title="Nginx配置请求转发到后端"><img class="post-bg" src="https://img1.baidu.com/it/u=4272075540,4028945889&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx配置请求转发到后端"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/Nginx%E9%85%8D%E7%BD%AE%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%88%B0%E5%90%8E%E7%AB%AF/" title="Nginx配置请求转发到后端">Nginx配置请求转发到后端</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-27T07:51:37.000Z" title="发表于 2020-06-27 15:51:37">2020-06-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/">服务部署</a></span></div><div class="content">新建一个nginx server
+在nginx的配置文件中新建一个server监听前端部署的端口
+123456server&#123;	#监听端口    listen 80;    server_name 网站名称;&#125;
+使用Nginx代理前端页面
+然后在server中添加一个location，就是把访问路径指向前端项目打包后的地址
+1234location / &#123;	root 前端项目打包后的地址;	index index.html index.htm;&#125;
+nginx请求转发到后端
+在部署前后端分离项目时，通常都要使用nginx把前端的请求转发到后端的接口上去，这就要配置nginx的proxy_pass功能。
+12345678910# 转发请求到后端location /api/ &#123;	proxy_set_header Host $http_host;	proxy_set_header X-Real-IP $remote_addr;	proxy_set_header REMOTE-HOST $remote_addr;	proxy_set_header  ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img.peterli.club/img/profile.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">peter</div><div class="author-info__description">码农</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lealaxy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lealaxy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:lealaxy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://t.me/lealaxy" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">刚入门炼丹，正在努力炼出一炉好丹药。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/" title="搭建Docker私有仓库"><img src="https://goharbor.io/img/logos/harbor-horizontal-color.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="搭建Docker私有仓库"/></a><div class="content"><a class="title" href="/2022/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/" title="搭建Docker私有仓库">搭建Docker私有仓库</a><time datetime="2022-10-14T02:48:08.000Z" title="发表于 2022-10-14 10:48:08">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/%5Bdocker%5D%E6%9E%84%E5%BB%BACUDA%E9%95%9C%E5%83%8F/" title="「docker」构建CUDA镜像"><img src="https://img2.baidu.com/it/u=4068033886,1626221935&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=PNG?w=640&amp;h=286" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「docker」构建CUDA镜像"/></a><div class="content"><a class="title" href="/2022/%5Bdocker%5D%E6%9E%84%E5%BB%BACUDA%E9%95%9C%E5%83%8F/" title="「docker」构建CUDA镜像">「docker」构建CUDA镜像</a><time datetime="2022-05-24T10:00:44.000Z" title="发表于 2022-05-24 18:00:44">2022-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/%5B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%5D%E4%BD%99%E5%BC%A6%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%8E%87/" title="「深度学习基础」余弦退火学习率-PyTorch版"><img src="https://img0.baidu.com/it/u=355673106,1614830790&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「深度学习基础」余弦退火学习率-PyTorch版"/></a><div class="content"><a class="title" href="/2022/%5B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%5D%E4%BD%99%E5%BC%A6%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%8E%87/" title="「深度学习基础」余弦退火学习率-PyTorch版">「深度学习基础」余弦退火学习率-PyTorch版</a><time datetime="2022-04-29T10:00:44.000Z" title="发表于 2022-04-29 18:00:44">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/ubuntu%E4%B8%8B%E5%9B%9E%E9%80%80%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC/" title="ubuntu下回退内核版本"><img src="https://object-lealaxy.oss-cn-beijing.aliyuncs.com/img/image-20200427113426863.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu下回退内核版本"/></a><div class="content"><a class="title" href="/2021/ubuntu%E4%B8%8B%E5%9B%9E%E9%80%80%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC/" title="ubuntu下回退内核版本">ubuntu下回退内核版本</a><time datetime="2021-06-18T13:07:58.000Z" title="发表于 2021-06-18 21:07:58">2021-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/docker%E7%AC%94%E8%AE%B0/" title="docker笔记"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fask-fd.zol-img.com.cn%2Fg5%2FM00%2F08%2F04%2FChMkJlo-qF6IeYkzAATACznjbq0AAjbxgCO83gABMAj575.jpg&amp;refer=http%3A%2F%2Fask-fd.zol-img.com.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1653714439&amp;t=b7f621183e4eabbabb7036e1667f3015" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker笔记"/></a><div class="content"><a class="title" href="/2021/docker%E7%AC%94%E8%AE%B0/" title="docker笔记">docker笔记</a><time datetime="2021-05-24T13:07:58.000Z" title="发表于 2021-05-24 21:07:58">2021-05-24</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">3</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/DockerHub/"><span class="card-category-list-name">DockerHub</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/Dockerfile/"><span class="card-category-list-name">Dockerfile</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">2</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/Spring/"><span class="card-category-list-name">Spring</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/Spring/Spring-Cloud/"><span class="card-category-list-name">Spring Cloud</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"><span class="card-category-list-name">开源项目</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Learning-Rate/" style="font-size: 1.1em; color: #999">Learning Rate</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BA%BA/" style="font-size: 1.3em; color: #99a1ac">工具人</a> <a href="/tags/Dockerfile/" style="font-size: 1.2em; color: #999da3">Dockerfile</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 1.1em; color: #999">开源项目</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" style="font-size: 1.1em; color: #999">服务部署</a> <a href="/tags/Linux/" style="font-size: 1.2em; color: #999da3">Linux</a> <a href="/tags/VS/" style="font-size: 1.1em; color: #999">VS</a> <a href="/tags/Spring-Cloud/" style="font-size: 1.1em; color: #999">Spring Cloud</a> <a href="/tags/Spring/" style="font-size: 1.1em; color: #999">Spring</a> <a href="/tags/Ubuntu/" style="font-size: 1.1em; color: #999">Ubuntu</a> <a href="/tags/RoboMaster/" style="font-size: 1.1em; color: #999">RoboMaster</a> <a href="/tags/Caffe/" style="font-size: 1.2em; color: #999da3">Caffe</a> <a href="/tags/YOLOV4/" style="font-size: 1.1em; color: #999">YOLOV4</a> <a href="/tags/Machine-learning/" style="font-size: 1.5em; color: #99a9bf">Machine learning</a> <a href="/tags/Nginx/" style="font-size: 1.1em; color: #999">Nginx</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">数据库</a> <a href="/tags/Kernel/" style="font-size: 1.1em; color: #999">Kernel</a> <a href="/tags/Git/" style="font-size: 1.2em; color: #999da3">Git</a> <a href="/tags/MySQL/" style="font-size: 1.1em; color: #999">MySQL</a> <a href="/tags/TensorFlow2/" style="font-size: 1.1em; color: #999">TensorFlow2</a> <a href="/tags/Java/" style="font-size: 1.2em; color: #999da3">Java</a> <a href="/tags/DockerHub/" style="font-size: 1.1em; color: #999">DockerHub</a> <a href="/tags/Docker/" style="font-size: 1.4em; color: #99a5b6">Docker</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">2022年10月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">2022年05月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">2022年04月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/06/"><span class="card-archive-list-date">2021年06月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">2021年05月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/08/"><span class="card-archive-list-date">2020年08月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">2020年07月</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">2020年06月</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">18</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2019-06-07T00:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-09-22T07:58:43.863Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023 By peter</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="https://www.beian.gov.cn/img/new/gongan.png"><span>鲁ICP备19056758号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["不上班就没饭吃！","好好学习，天天向上！"])
+  } else {
+    document.getElementById("subtitle").textContent = "不上班就没饭吃！"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const findTrueUrl = (array) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        const urlArray = data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig)
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        saveToLocal.set('github-newest-comments', JSON.stringify(array), 10/(60*24))
+        generateHtml(array)
+    });
+  }
+
+  const getComment = () => {
+    fetch('https://api.github.com/repos/lealaxy/lealaxy.github.io/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at,
+            'githubUrl': item.html_url
+          }
+        })
+        findTrueUrl(githubArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('github-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
